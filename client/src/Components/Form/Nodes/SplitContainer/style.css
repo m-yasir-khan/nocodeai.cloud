@@ -1,0 +1,17 @@
+.split-node {
+  display: block;
+  border: 1px solid transparent;
+  padding: 4px;
+  border-radius: 4px;
+  background-color: transparent;
+} 
+
+.split-node:hover {
+  border: 1px solid #dedede;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

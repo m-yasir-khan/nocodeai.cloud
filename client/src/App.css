@@ -1,0 +1,49 @@
+.dndflow {
+  flex-direction: column;
+  min-height: 600px;
+  display: flex;
+}
+
+.dndflow aside {
+  padding: 0px 10px;
+  width: 200px;
+  font-size: 12px;
+  background: #fcfcfc;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dndflow aside .description {
+  margin-bottom: 10px;
+}
+
+
+.dndflow .dndnode {
+  border: none;
+  padding: 4px;
+  margin-bottom: 10px;
+  cursor: grab;
+}
+
+.dndflow .dndnode.text {
+  border: none;
+}
+
+.dndflow .dndnode.form {
+  border-color: #862469;
+}
+
+.dndflow .dndnode.output {
+  border-color: #ff0072;
+}
+
+.dndflow .reactflow-wrapper {
+  flex-grow: 1;
+  height: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .dndflow {
+    flex-direction: row;
+  }
+}

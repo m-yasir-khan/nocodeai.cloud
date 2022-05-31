@@ -1,0 +1,19 @@
+.checkbox-base {
+    text-align: left;
+    padding: 2px;
+    min-width: 70px;
+    min-height: 40px;
+    margin: 8px 0px;
+    width: 100%;
+}
+
+.checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 12px;
+}
+
+input[type=checkbox] {
+  margin-top: 6px;
+  margin-right: 4px;
+}

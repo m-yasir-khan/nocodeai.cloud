@@ -1,0 +1,162 @@
+.field-palette-project {
+  display: flex;
+  margin-top: 8px;
+  font-size: 12px;
+  width: 99.5%;
+  background-color: #02005c;
+  color: rgb(255, 255, 255);
+  border: 1px solid #000000;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.field-palette-project .heading {
+  font-size: 12px;
+  width: 100%;
+  height: 25px;
+  padding: 2px 0px;
+  cursor: pointer;
+}
+
+.field-palette-project:hover {
+  transform: scale(1.05);
+}
+
+.field-palette-project span {
+  font-size: 10px;
+  text-align: center;
+  width: 290%;
+  padding-top: 5px;
+  border: 1px solid #027ef8;
+}
+
+
+.palette-project {
+  border-right: 1px solid rgb(179, 179, 179);
+  text-align: center;
+}
+
+.palette-components-project {
+  height: 16px;
+  max-height: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.palette-project .container {
+  padding: 0px 6px;
+  width: 250px;
+  height: fit-content;
+  overflow: hidden;
+  font-size: 12px;
+  background: #fcfcfc;
+  /* display: flex; */
+  flex-wrap: wrap;
+  text-align: left;
+  border-bottom: 1px solid #dedede;
+}
+
+.palette-project .container-collapse {
+  padding: 0px 6px;
+  width: 250px;
+  height: 0px;
+  overflow: hidden;
+  font-size: 12px;
+  background: #fcfcfc;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: left;
+  transition: all 1s;
+}
+.palette-project .components-header {
+  display: flex;
+  margin-top: 8px;
+  font-size: 12px;
+  width: 99.5%;
+  background-color: #027ef8;
+  color: white;
+  border: 1px solid #027ef8;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.palette-project .components-header .header-arrow-down {
+  height: 20px;
+  width: 20px;
+  text-align: right;
+}
+
+.palette-project .components-header .heading {
+  font-size: 15px;
+  width: 100%;
+  height: 30px;
+  padding: 2px 0px;
+  cursor: pointer;
+}
+
+.project {
+  /* display: block; */
+  margin-bottom: 18px;
+  text-align: center;
+  margin-top: 10px;
+  padding: 15px 15px;
+  width: 100%;
+  font-weight: bold;
+  background-color: #092f79;
+  color: #dedede;
+}
+
+.customContextmenuArea1ListWrapper {
+  background-color: aqua;
+}
+
+.customContextmenuArea1ListItem {
+  list-style-type: disclosure-closed;
+}
+
+.customContextmenuArea1ListItem:hover {
+  background-color: sandybrown;
+}
+
+.contextMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: auto;
+  width: fit-content;
+}
+.optionListItem {
+  padding: 4px;
+  border-radius: 3px;
+  list-style-type: none;
+}
+
+.optionListItem:hover {
+  cursor: pointer;
+}
+
+/* ***************** */
+
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.spreadSheet
+{
+width: fit-content;
+border: 1px solid;
+}

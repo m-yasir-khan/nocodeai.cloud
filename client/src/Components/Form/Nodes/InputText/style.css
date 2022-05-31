@@ -1,0 +1,7 @@
+.input-text-base {
+    width: 100%
+}
+
+.input-text-base:hover {
+    border: 1px solid #dedede;
+}

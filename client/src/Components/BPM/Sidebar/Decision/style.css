@@ -1,0 +1,7 @@
+.bg_decision {
+    background-image: url('../../../../../assets/shapes/decision.svg');
+    background-repeat: no-repeat;
+    background-size: 23px 23px;
+    color: black;
+    align-items: center;
+  }

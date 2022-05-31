@@ -1,0 +1,11 @@
+.container-base {
+    display: block;
+    padding: 6px;
+    background-color: transparent;
+    width: 75%;
+    z-index: 1;
+}
+/* 
+.base-scrollable-container {
+    overflow: auto;
+} */

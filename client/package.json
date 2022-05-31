@@ -1,0 +1,70 @@
+{
+  "name": "reactflow",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@air/react-drag-to-select": "^2.2.0",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@heroicons/react": "^1.0.6",
+    "@material-ui/lab": "^4.0.0-alpha.61",
+    "@mui/core": "^5.0.0-alpha.54",
+    "@mui/icons-material": "^5.6.2",
+    "@mui/material": "^5.6.2",
+    "@mui/styles": "^5.6.2",
+    "@mui/x-date-pickers": "^5.0.0-alpha.3",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^12.1.4",
+    "@testing-library/user-event": "^13.5.0",
+    "antd": "^4.20.5",
+    "axios": "^0.27.2",
+    "lodash.throttle": "^4.1.1",
+    "material-ui-color-picker": "^3.5.1",
+    "mui-rte": "^2.0.1",
+    "re-resizable": "^6.9.9",
+    "react": "^18.0.0",
+    "react-alignment-guides": "^1.0.1-rc.17",
+    "react-autocomplete-hint": "^2.0.0",
+    "react-dnd": "^16.0.0",
+    "react-dnd-html5-backend": "^16.0.0",
+    "react-dom": "^18.0.0",
+    "react-dragline": "^2.0.0-alpha.1",
+    "react-flow": "^1.0.3",
+    "react-flow-renderer": "^9.6.7",
+    "react-icons": "^4.3.1",
+    "react-konva": "18.0.0-0",
+    "react-rnd": "^10.3.7",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.0",
+    "react-style-object-to-css": "^1.1.2",
+    "use-image": "1.0.2",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.0.23"
+  }
+}

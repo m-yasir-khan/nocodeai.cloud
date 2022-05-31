@@ -1,0 +1,20 @@
+.main_left{
+display: flex;
+text-align:  center;
+
+}
+.left-icons{
+    color: #027ef8;
+ padding-right: 10px;
+ justify-content: space-between !important;
+    
+}
+.input_modal1{
+    margin-bottom: 30px !important;
+}
+.heading_left{
+    text-align: center;
+    font-weight: 500;
+    margin-top: 20px;
+    margin-bottom: 17px;
+}
