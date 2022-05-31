@@ -13,6 +13,7 @@ import {
 
 function Base(props) {
     let data = props?.elements;
+    console.log(data);
 
     const [key, setKey] = useState("");
     const [draw, setDraw] = useState(false);

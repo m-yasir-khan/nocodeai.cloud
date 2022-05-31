@@ -48,7 +48,7 @@ export default () => {
         return (
           <div key={set?.id}>
             <div className="components-header">
-              <label className='heading' id={set?.id} onClick={handleClick}>{set?.name}</label>
+              <label className='formheading' id={set?.id} onClick={handleClick}>{set?.name}</label>
               {<set.Icon className='header-arrow-down' id={set?.id} onClick={handleClick} />}
             </div>
             <div className={set?.open ? 'container' : "container-collapse"}>
