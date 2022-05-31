@@ -192,6 +192,7 @@ const onDrop = (event, elements, setElements) => {
         ...es,
         nodes: data
     }))
+    // console.log(data,"drop")
 }
 
 export {

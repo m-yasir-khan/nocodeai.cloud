@@ -14,7 +14,12 @@ import {
     AiTwotoneStar,
     AiOutlineDownload,
     AiOutlineMail,
-    AiFillStar
+    AiFillStar,
+    AiOutlineDatabase,
+    AiOutlinePhone,
+    AiOutlineInbox,
+    AiOutlineWarning,
+    AiOutlineRedo
 } from 'react-icons/ai';
 
 import {
@@ -47,7 +52,8 @@ import {
     MdOutlineTagFaces,
     MdKeyboardArrowDown,
     MdKeyboardArrowUp,
-    MdSettingsSuggest
+    MdSettingsSuggest,
+    MdOutlineWorkOutline
 } from 'react-icons/md'
 
 import {
@@ -66,7 +72,9 @@ import {
     FaHeading,
     FaDatabase,
     FaGripLines,
-    FaLink
+    FaLink,
+    FaLaptop,
+    FaFax
 } from 'react-icons/fa';
 
 import {
@@ -89,7 +97,10 @@ import {
     BsSquareHalf,
     BsArrowLeftRight,
     BsTriangle,
-    BsHexagon
+    BsHexagon,
+    BsKanban,
+    BsStackOverflow,
+    BsEyeglasses
 } from 'react-icons/bs';
 
 import {
@@ -102,7 +113,8 @@ import {
 
 import {
     VscDebugStart,
-    VscEditorLayout
+    VscEditorLayout,
+    VscArrowRight
 }
     from 'react-icons/vsc';
 import {
@@ -132,6 +144,8 @@ const logo = "https://nocodeai.cloud/wp-content/uploads/2022/04/nocode-main-logo
 
 const constants = {
     logo,
+    FaLaptop,
+    AiOutlineDatabase,
     AiOutlineDown,
     AiOutlineUser,
     AiOutlineDelete,
@@ -216,7 +230,18 @@ const constants = {
     SiPostgresql,
     SiMongodb,
     SiOracle,
-    GrMysql
+    GrMysql,
+    MdOutlineWorkOutline,
+    AiOutlinePhone,
+    FaFax,
+    AiOutlineInbox,
+    VscArrowRight,
+    AiOutlineWarning,
+    BsKanban,
+    BsStackOverflow,
+    VscArrowRight,
+    AiOutlineRedo,
+    BsEyeglasses
 }
 
 export { constants }

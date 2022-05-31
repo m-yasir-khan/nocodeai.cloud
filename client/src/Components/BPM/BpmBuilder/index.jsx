@@ -579,7 +579,7 @@ export default function UseCaseBuilder() {
 
   return (
     <div className="formbuilder">
-      {/* <Sidebar /> */}
+      <Sidebar />
       <Base
         onPaneClick={onPaneClick}
         onDragOver={onDragOver}

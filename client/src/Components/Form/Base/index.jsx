@@ -31,12 +31,13 @@ function Base(props) {
         const indexesToSelect = [];
         selectableItems.current.forEach((item, index) => {
             if (boxesIntersect(box, item)) {
-                const itemID = `cont_${index + 3}`;
+                const itemID = `node_${index + 1}`;
                 indexesToSelect.push(itemID);
             }
         });
         // props?.handleMultipleSelectDrag(indexesToSelect);
         setSelectedIds(indexesToSelect);
+        console.log(indexesToSelect,"intersection")
     }
     const componentDidMount = () => {
 
@@ -45,12 +46,14 @@ function Base(props) {
             Array.from(document.getElementById('formBase').children[1].children).forEach((item, index) => {
                 const { left, top, width, height } = item.getBoundingClientRect();
                 // const topUpdated = top +110;
+               
                 selectableItems.current.push({
                     left,
                     top: top + 110,
                     width,
                     height
-                });
+                }); 
+                console.log (selectableItems.current);
             });
         }
     };
@@ -73,6 +76,7 @@ function Base(props) {
 
     const handleOnDrop = (event) => {
         onDrop(event, props?.elements, props?.setElements, props?.copiedNodes, props?.setCopiedNodes);
+
     }
 
     const style = {
@@ -142,7 +146,7 @@ function Base(props) {
             setDraw(false);
             // console.log(e.clientX, e.clientY);
             const box = { left: startPos.x, top: startPos.y + 100, width: rec.width, height: rec.height }
-            // console.log("selection Complete", box);
+            console.log("selection Complete", box);
             onSelectionChange(box);
         }
         componentDidMount();
