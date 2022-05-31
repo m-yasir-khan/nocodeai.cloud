@@ -53,9 +53,9 @@ nodemon
 ```
 ## For Client Side Frontend
 ```sh
-cd nocodeai.cloud
+cd client
 npm i
-nodemon
+npm run start
 ```
 
 For production environments...
