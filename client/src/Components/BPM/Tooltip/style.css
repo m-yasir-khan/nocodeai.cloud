@@ -1,0 +1,32 @@
+.tooltip {
+    position: relative;
+    display: hidden;
+}
+
+.tooltip .tooltiptext {
+    display: hidden;
+    color: #2196F3;
+    background-color: transparent;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 100%;
+}
+
+.tooltip:hover .tooltiptext {
+    display: block;
+}
+
+.icon-style {
+    height: 23px; 
+    width: 23px; 
+    margin-top: 4px; 
+    margin-left: 4px; 
+    margin-right: 4px; 
+    cursor: pointer;
+}

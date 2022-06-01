@@ -25,7 +25,7 @@ function Kanban(props) {
     }, []);
 
     useEffect(() => {
-        props?.componentDidUpdate();
+        // props?.componentDidUpdate();
     });
 
     const handleStyles = {

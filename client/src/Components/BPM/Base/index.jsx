@@ -1,100 +1,67 @@
 import { DraggableContainer, DraggableChild } from "react-dragline";
 import './style.css'
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { Rnd } from "react-rnd";
-import DragSelect from './dragSelect';
+import { useState, useEffect, useRef } from 'react';
+// import { FormName } from '../Nodes';
+import { boxesIntersect } from "@air/react-drag-to-select";
 import {
-    Box,
-    boxesIntersect,
-    useSelectionContainer
-} from "@air/react-drag-to-select";
+    onDrop,
+    onDragOver,
+    handleDeselectNodes,
+    handleUpdateNode,
+    handleMultipleSelectDrag
+} from '../FunctionalData';
 
 function Base(props) {
     let data = props?.elements;
 
-    const [selectionBox, setSelectionBox] = useState();
-    const [selectedIndexes, setSelectedIndexes] = useState([]);
-    const [render, setRender] = useState(false);
-    const [width, setWidth] = useState(200);
-    const [height, setHeight] = useState(200);
-    const [x1, setX1] = useState(10);
-    const [x2, setX2] = useState(10);
-    const [y1, setY1] = useState(10);
-    const [y2, setY2] = useState(10);
+    const [key, setKey] = useState("");
+    const [draw, setDraw] = useState(false);
+    const [cursor, setCursor] = useState("grab");
+    const [rec, setRec] = useState({ width: 8, height: 3 });
+    const [startPos, setStartPos] = useState({ x: 0, y: 0 });
+    const [endPos, setEndPos] = useState({ x: 0, y: 0 });
+    const [selectedIds, setSelectedIds] = useState([]);
     const selectableItems = useRef([]);
-    const elementsContainerRef = useRef(null);
-
 
     useEffect(() => {
-        // let indexes =[];
-        // Array.from(selectedIndexes).forEach((selectedIndex)=>{
-        //     const myID = `cont_${selectedIndex + 2}`;        
-        //     // console.log("myID", myID);
-        //     props?.handleMultipleSelectNode(myID);
-        // });
-        //  console.log(selectedIndexes, '- Has changed');
-        props.handleMultiplesSelectNode(selectedIndexes);
+        handleMultipleSelectDrag(selectedIds, props?.elements, props?.setElements);
+    }, [selectedIds])
 
-
-    }, [selectedIndexes])
-
-    const onSelectionChange = useCallback(
-        (box) => {
-            setSelectionBox(box);
-            // console.log('box', box);
-            const indexesToSelect = [];
-            selectableItems.current.forEach((item, index) => {
-                if (boxesIntersect(box, item)) {
-                    const itemID = `cont_${index + 2}`;
-                    indexesToSelect.push(itemID);
-                }
-            });
-
-            setSelectedIndexes(indexesToSelect);
-            // console.log('intersected:', indexesToSelect);
-        },
-        [selectableItems]
-    );
-
-    const { DragSelection } = useSelectionContainer({
-        eventsElement: document.getElementById("myBPM"),
-        onSelectionChange,
-        onSelectionStart: () => {
-            // console.log("OnSelectionStart");
-        },
-        onSelectionEnd: () => {
-            //  console.log("OnSelectionEnd", selectableItems);
-            // const myID = `cont_${selectedIndexes[0]+2}`;
-            // console.log("myID",myID);
-            // props?.handleSelectNode( 'cont_3');
-        },
-        selectionProps: {
-            style: {
-                border: "2px dashed purple",
-                borderRadius: 4,
-                backgroundColor: "brown",
-                opacity: 0.5
-
+    const onSelectionChange = (box) => {
+        const indexesToSelect = [];
+        selectableItems.current.forEach((item, index) => {
+            if (boxesIntersect(box, item)) {
+                const itemID = `node_${index + 1}`;
+                indexesToSelect.push(itemID);
             }
-        }
-    });
-
-
-
-    const onDragOver = (event) => {
-        props?.onDragOver(event);
-    };
-
-    const onPaneClick = () => {
-        props?.onPaneClick();
-        // console.log("Clicked on container")
+        });
+        // props?.handleMultipleSelectDrag(indexesToSelect);
+        setSelectedIds(indexesToSelect);
+        console.log(indexesToSelect, "intersection")
     }
     const componentDidMount = () => {
-        // console.log("component mounted");
+
         selectableItems.current = [];
-        if (document.getElementById('myBPM').children[0].children) {
-            Array.from(document.getElementById('myBPM').children[0].children).forEach((item, index) => {
-                // console.log(`item ${index}`, item);
+        if (document.getElementById('formBase').children[1].children) {
+            Array.from(document.getElementById('formBase').children[1].children).forEach((item, index) => {
+                const { left, top, width, height } = item.getBoundingClientRect();
+                // const topUpdated = top +110;
+
+                selectableItems.current.push({
+                    left,
+                    top: top + 110,
+                    width,
+                    height
+                });
+                console.log(selectableItems.current);
+            });
+        }
+    };
+    const componentDidUpdate = () => {
+
+        selectableItems.current = [];
+        if (document.getElementById('formBase').children[1].children) {
+            Array.from(document.getElementById('formBase').children[1].children).forEach((item, index) => {
                 const { left, top, width, height } = item.getBoundingClientRect();
                 // const topUpdated = top +110;
                 selectableItems.current.push({
@@ -107,41 +74,32 @@ function Base(props) {
         }
     };
 
-    const componentDidUpdate = () => {
-        // console.log("component mounted");
-        selectableItems.current = [];
-        if (document.getElementById('myBPM').children[0].children) {
-            Array.from(document.getElementById('myBPM').children[0].children).forEach((item, index) => {
-                // console.log(`item ${index}`, item);
-                const { left, top, width, height } = item.getBoundingClientRect();
-                // const topUpdated = top +110;
-                selectableItems.current.push({
-                    left,
-                    top: top + 110,
-                    width,
-                    height
-                });
-            });
-        }
-    }
-
-    const onDrop = (event) => {
-        props?.onDrop(event);
-
-    }
-
-    const updateParentPosition = (position) => {
-        console.log("new position", position);
+    const handleOnDrop = (event) => {
+        onDrop(event, props?.elements, props?.setElements, props?.copiedNodes, props?.setCopiedNodes);
+       
     }
 
     const style = {
-        color: "#333",
-        border: "1px solid #dedede",
-        display: "block",
-        borderRadius: "1px",
-        backgroundColor: "#f9f9f9",
-        width: "100%",
-        padding: "30px"
+        color: '#333',
+        border: '1px solid #dedede',
+        borderRadius: '1px',
+        backgroundColor: '#f9f9f9',
+        width: '100%',
+        minHeight: "80vh",
+        height: "80vh",
+        outline: 'none',
+        cursor: cursor
+    }
+
+    const square = {
+        position: "absolute",
+        top: startPos.y,
+        left: startPos.x,
+        width: rec.width,
+        height: rec.height,
+        border: "1px solid #3488f7",
+        backgroundColor: "#559cfa",
+        opacity: 0.5
     }
 
     const containerStyle = {
@@ -150,77 +108,103 @@ function Base(props) {
         width: "100%"
     };
 
-    const dragComponent = (event) => {
-        // console.log("draggging", document.getElementById('myBPM').children[0].children[0].style.top);
-        props?.changePosition(event);
-        setRender(true);
-
-
+    const handleClick = (event) => {
+        console.log(event.target.id);
     }
 
+    const handleKeyDown = (event) => {
+        setKey(event.key);
+        // console.log(event.key);
+        event.key == "Control" && setCursor("crosshair");
+    }
 
-    const dragover = (event) => {
-        // console.Console("dragged");
+    const onDragStartHandler = (event, id, width, height) => {
+        let rect = event.target.getBoundingClientRect();
+        const position = { y: rect.top - 145.59375, x: rect.left - 300 };
+        handleUpdateNode(event, id, position, width, height, props?.elements, props?.setElements);
+    }
+
+    const deselectNodes = (event) => {
+        if (key != "Control") {
+            handleDeselectNodes(event, props?.elements, props?.setElements, props?.setNodeProperty, props?.setPropertyVisible)
+        }
+    }
+
+    const onMouseDown = (e) => {
+        if (key == "Control") {
+            let x = e.clientX;
+            let y = e.clientY;
+            setDraw(true);
+            setStartPos({ x: x, y: y });
+            // console.log(x, y);
+        }
+    }
+
+    const onMouseUp = (e) => {
+        if (key == "Control") {
+            setCursor("grab")
+            setDraw(false);
+            // console.log(e.clientX, e.clientY);
+            const box = { left: startPos.x, top: startPos.y + 100, width: rec.width, height: rec.height }
+            console.log("selection Complete", box);
+            onSelectionChange(box);
+        }
+        componentDidMount();
+    }
+
+    const onMouseMove = (e) => {
+        if (key == "Control") {
+            let x = e.clientX;
+            let y = e.clientY;
+            setEndPos({ x: x, y: y });
+            let w = x - startPos.x;
+            let h = y - startPos.y;
+            setRec({ width: w, height: h })
+        }
+        else {
+            setDraw(false)
+        }
     }
 
     return (
         <div className="container-base">
+            {/* <FormName style={{ padding: "8px 22px", marginBottom: "6px", fontSize: "20px", textAlign: "center", fontWeight: "bold" }} name={data?.formName} setElements={props?.setElements} /> */}
             <div
-                onKeyDown={props?.copyNode}
-                onDrop={onDrop}
+                onKeyDown={handleKeyDown}
+                onKeyUp={(e) => { setKey(""); setCursor("grab"); }}
+                onDrop={handleOnDrop}
                 onDragOver={onDragOver}
+                onMouseDown={onMouseDown}
+                onMouseUp={onMouseUp}
+                onMouseMove={onMouseMove}
                 style={style}
-                // onClick={(event) => props?.handleSelectNode(event, null)}
-                onDoubleClick={(event) => props?.handleSelectNode(event, null)}
-                id="myBPM"
-            >
+                className="base-scrollable-container"
+                id="formBase"
+                // onClick={props?.handleDeselectNodes}
+                onClick={deselectNodes}
+                tabIndex="0">
 
-                {/* <DragSelection /> */}
-                <DraggableContainer style={containerStyle} ref={elementsContainerRef} className="dragContainer">
-                    <DragSelection />
 
+                <div style={draw ? square : { display: "none" }}></div>
+
+                <DraggableContainer style={containerStyle} id="dragContainer">
                     {data?.nodes?.map(element => {
                         if (element.type) {
-                            // { console.log("element position", element.position) }
                             return (
-
-                                <DraggableChild key={`${element.id}`} defaultPosition={element.position} style={{ top: '300px', left: '150px' }} onDrag={dragComponent} >
-                                    <div >
+                                <DraggableChild style={{ position: "absolute" }} onDrag={(e) => onDragStartHandler(e, element?.id, element?.width, element?.height)} key={element?.id} defaultPosition={element?.position}>
+                                    <div>
                                         {<element.component
-                                            key={element?.id}
-                                            defaultPosition={element?.position}
-                                            handleSelectNode={props?.handleSelectNode}
+                                            setNodeProperty={props?.setNodeProperty}
+                                            setPropertyVisible={props?.setPropertyVisible}
+                                            elements={props?.elements}
+                                            setElements={props?.setElements}
+                                            copiedNodes={props?.copiedNodes}
+                                            setCopiedNodes={props?.setCopiedNodes}
                                             componentDidMount={componentDidMount}
-                                            componentDidUpdate={componentDidUpdate}
-                                            updateParentPosition={updateParentPosition}
-                                            properties={element?.properties}
-                                            delete={element?.delete}
-                                            width={element?.width}
-                                            height={element?.height}
-                                            onDragOver={props?.onDragOver}
-                                            onDrop={element.onDrop}
-                                            handleMultipleSelectNode={props.handleMultipleSelectNode}
+                                            // componentDidUpdate={componentDidUpdate}
                                             data={element} />}
                                     </div>
-                                    {/* <Rnd
-                                        style={style}
-                                        size={{ width: width, height: height }}
-                                        position={{ x: x1, y: y1 }}
-                                        
-                                        onDragStop={(e, d) => {
-                                            setX1(d.x);setY1(d.y);
-                                        }}
-                                        onResizeStop={(e, direction, ref, delta, position) => {
-                                            console.log(position);
-                                            setWidth(ref.style.width);
-                                            setHeight(ref.style.height);
-                                            setX1(position.x);setY1(position.y);
-                                        }}
-                                    >
-                                        Rnd
-                                    </Rnd> */}
                                 </DraggableChild>
-
                             )
 
                         }
