@@ -15,6 +15,7 @@ import {
 function TextArea(props) {
     let data = props?.data;
     data.type = "textarea";
+    console.log(data?.label,'data')
 
     const [dimension, setDimension] = useState();
     const [multiple, setMultiple] = useState(false);
@@ -110,7 +111,7 @@ function TextArea(props) {
             handleComponent={handleComponent}
             resizeRatio={1}
         >
-            <textarea style={{ width: "100%" }}></textarea>
+            <textarea style={{ width: "100%" }} value={data?.textarea} />
 
         </Resizable>
     )

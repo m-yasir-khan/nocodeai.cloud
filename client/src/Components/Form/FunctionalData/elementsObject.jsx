@@ -188,7 +188,7 @@ const handleElements = (getType, position, getId, dataProperties, dataDelete) =>
         id: getId,
         message: "This is an error message!",
         label: "Default",
-        severity: "error"
+        severity: "success"
     }
 
     const dropdown = {
@@ -336,7 +336,8 @@ const handleElements = (getType, position, getId, dataProperties, dataDelete) =>
         delete: dataDelete,
         id: getId,
         width: 100,
-        height: 100
+        height: 100,
+        label:'Header'
     }
 
     const swimlane = {

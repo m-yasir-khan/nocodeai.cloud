@@ -16,7 +16,7 @@ import {
 function AlertNode(props) {
     let data = props?.data;
     data.type = "alert";
-
+    console.log(data,'data')
     const [dimension, setDimension] = useState();
     const [multiple, setMultiple] = useState(false);
     const [fired, setFired] = useState(false);
@@ -111,7 +111,7 @@ function AlertNode(props) {
             handleComponent={handleComponent}
             resizeRatio={1}
         >
-            <Alert severity={data?.severity}>{data?.message}</Alert>
+            <Alert severity={data?.severity}>{data?.label}</Alert>
         </Resizable>
     )
 

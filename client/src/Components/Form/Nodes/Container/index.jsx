@@ -15,7 +15,6 @@ import {
 function Container(props) {
     let data = props?.data;
     data.type = "container";
-
     const [dimension, setDimension] = useState();
     const [multiple, setMultiple] = useState(false);
     const [fired, setFired] = useState(false);
@@ -99,7 +98,7 @@ function Container(props) {
                 setHeight(height + d.height);
                 handleUpdateNode(e, data?.id, data?.position, w, h, props?.elements, props?.setElements)
             }}
-            style={{ textAlign: "center", border: "1px solid #dedede", borderRadius: "4px 4px 0 0" }}
+            style={{ backgroundColor: data?.bgColor, color: data?.color,textAlign: "center", border: "1px solid #dedede", borderRadius: "4px 4px 0 0" }}
             defaultSize={{ width: data?.width, height: data?.height }}
             onResizeStart={handleResizeStart}
             minWidth={data?.minWidth}
@@ -112,7 +111,7 @@ function Container(props) {
         >
             <div style={{ display: "flex", margin: "auto", textAlign: "center", width: "100%" }}>
                 <div style={{ border: "1px solid #a1a1a1", width: "100%", borderRadius: "4px 4px 0 0" }}>
-                    <label>Header</label>
+                    <label style={{textTransform: data?.textTransform,}}>{data?.label}</label>
                 </div>
             </div>
         </Resizable>

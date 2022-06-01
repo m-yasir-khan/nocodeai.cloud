@@ -1,0 +1,104 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\92310\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js
+
+PATH: 
+  C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\flutter\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\OpenJDK\openjdk-8u312-b07\bin;C:\Program Files\Git\cmd;C:\Program Files\GitHub CLI\;C:\Users\92310\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\92310\AppData\Local\Microsoft\WindowsApps;C:\Users\92310\AppData\Local\Programs\Microsoft VS Code\bin;C:\flutter\bin;C:\Users\92310\AppData\Local\Android\Sdk\build-tools;C:\Users\92310\AppData\Local\Android\Sdk\platform-tools;C:\Users\92310\AppData\Local\Android\Sdk\emulator;C:\Users\92310\AppData\Roaming\npm;C:\Program Files\heroku\bin;C:\Program Files\OpenSSL-Win64\bin;C:\Users\92310\AppData\Local\GitHubDesktop\bin;C:\Users\92310\AppData\Roaming\nvm;C:\Program Files\nodejs
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  14.16.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@mui/material/-/material-5.8.2.tgz: ESOCKETTIMEDOUT
+      at ClientRequest.<anonymous> (C:\Users\92310\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141510:19)
+      at Object.onceWrapper (events.js:421:28)
+      at ClientRequest.emit (events.js:315:20)
+      at TLSSocket.emitRequestTimeout (_http_client.js:784:9)
+      at Object.onceWrapper (events.js:421:28)
+      at TLSSocket.emit (events.js:327:22)
+      at TLSSocket.Socket._onTimeout (net.js:483:8)
+      at listOnTimeout (internal/timers.js:554:17)
+      at processTimers (internal/timers.js:497:7)
+
+npm manifest: 
+  {
+    "name": "reactflow",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+      "@air/react-drag-to-select": "^2.2.0",
+      "@emotion/react": "^11.9.0",
+      "@emotion/styled": "^11.8.1",
+      "@heroicons/react": "^1.0.6",
+      "@material-ui/lab": "^4.0.0-alpha.61",
+      "@mui/core": "^5.0.0-alpha.54",
+      "@mui/icons-material": "^5.6.2",
+      "@mui/material": "^5.6.2",
+      "@mui/styles": "^5.6.2",
+      "@mui/x-date-pickers": "^5.0.0-alpha.3",
+      "@testing-library/jest-dom": "^5.16.4",
+      "@testing-library/react": "^12.1.4",
+      "@testing-library/user-event": "^13.5.0",
+      "antd": "^4.20.5",
+      "axios": "^0.27.2",
+      "lodash.throttle": "^4.1.1",
+      "material-ui-color-picker": "^3.5.1",
+      "mui-rte": "^2.0.1",
+      "re-resizable": "^6.9.9",
+      "react": "^18.0.0",
+      "react-alignment-guides": "^1.0.1-rc.17",
+      "react-autocomplete-hint": "^2.0.0",
+      "react-dnd": "^16.0.0",
+      "react-dnd-html5-backend": "^16.0.0",
+      "react-dom": "^18.0.0",
+      "react-dragline": "^2.0.0-alpha.1",
+      "react-flow": "^1.0.3",
+      "react-flow-renderer": "^9.6.7",
+      "react-icons": "^4.3.1",
+      "react-konva": "18.0.0-0",
+      "react-rnd": "^10.3.7",
+      "react-router-dom": "^6.3.0",
+      "react-scripts": "5.0.0",
+      "react-style-object-to-css": "^1.1.2",
+      "use-image": "1.0.2",
+      "web-vitals": "^2.1.4"
+    },
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test",
+      "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+      "extends": [
+        "react-app",
+        "react-app/jest"
+      ]
+    },
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    },
+    "devDependencies": {
+      "tailwindcss": "^3.0.23"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

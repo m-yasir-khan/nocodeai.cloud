@@ -112,7 +112,7 @@ function ButtonNode(props) {
             resizeRatio={1}
         >
             <div style={{ textAlign: data?.align }}>
-                <Button onClick={data?.action} variant="contained" style={{ marginRight: "10px", fontSize: data?.size, textTransform: data?.textTransform, fontWeight: data?.fontWeight }}>{data?.label}</Button>
+                <Button onClick={data?.action} variant="contained" style={{ marginRight: "10px", fontSize: data?.size, textTransform: data?.textTransform, fontWeight: data?.fontWeight,backgroundColor: data?.bgColor, color: data?.color }}>{data?.label}</Button>
             </div>
         </Resizable>
     )
