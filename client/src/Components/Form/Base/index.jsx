@@ -13,6 +13,7 @@ import {
 
 function Base(props) {
     let data = props?.elements;
+    console.log(data);
 
     const [key, setKey] = useState("");
     const [draw, setDraw] = useState(false);
@@ -31,7 +32,7 @@ function Base(props) {
         const indexesToSelect = [];
         selectableItems.current.forEach((item, index) => {
             if (boxesIntersect(box, item)) {
-                const itemID = `cont_${index + 3}`;
+                const itemID = `node_${index + 1}`;
                 indexesToSelect.push(itemID);
             }
         });

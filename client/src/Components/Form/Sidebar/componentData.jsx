@@ -15,7 +15,7 @@ let componentData = [
     id: "0", open: true, name: "Form", Component: Form, Icon: constants.MdKeyboardArrowUp
   },
   {
-    id: "1", open: false, name: "Input", Component: Input, Icon: constants.MdKeyboardArrowUp
+    id: "1", open: false, name: "Input", Component: Input, Icon: constants.MdKeyboardArrowDown
   },
   {
     id: "2", open: false, name: "Date & Time", Component: DateTime, Icon: constants.MdKeyboardArrowDown

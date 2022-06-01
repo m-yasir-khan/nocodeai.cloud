@@ -167,7 +167,7 @@
     color: #333;
 }
 
-.palette .components-header {
+/* .palette .components-header {
     display: flex;
     margin-top: 8px;
     font-size: 12px;
@@ -177,9 +177,9 @@
     border: 1px solid #027ef8;
     border-radius: 2px;
     cursor: pointer;
-}
+} */
 
-.palette .components-header .heading {
+/* .palette .components-header .heading {
     font-size: 12px;
     width: 100%;
     padding: 2px 0px;
@@ -190,7 +190,7 @@
     height: 20px;
     width: 20px;
     text-align: right;
-}
+} */
 
 /* .palette .components-header .header-arrow-down:hover {
     background-color: #2187ec;
