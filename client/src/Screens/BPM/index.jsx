@@ -9,8 +9,6 @@ export default function BPMFlow() {
     <>
 
       <Header /> 
-      <Header /> 
-      <Header /> 
       <BPM />
       {/* <Footer /> */}
     </>
