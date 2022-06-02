@@ -1,4 +1,4 @@
-![alt text](https://drive.google.com/file/d/1kU5cFLzjgQpxc-UwF8GxH398KaxIVxqb/view?usp=sharing)
+![plot](./client/assets/nocodelogoNEW2.png)
 # NOCODEAI.CLOUD
 ## _Bring your Business Use Case Project to NoCodeAI and we will turn your Dream Project into reality._
 

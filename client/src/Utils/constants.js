@@ -16,6 +16,8 @@ import {
     AiOutlineMail,
     AiFillStar
 } from 'react-icons/ai';
+import axios from 'axios';
+
 
 import {
     TiStarburstOutline
@@ -126,10 +128,19 @@ import {
     from 'react-icons/im'
 
 
-import {GrMysql} from "react-icons/gr";
+import { GrMysql } from "react-icons/gr";
+// db_Connection
+export function postApi(data) {
+    axios.post("http://localhost:4000/connection/auth_connection", data)
+        .then((res) => {
+            console.log(res?.data?.msg)
+            console.log(res,"waesdfghfdsadfsghf")
+        }).catch((error) => {
+            console.log(error,"Error")
+        })
+}
 // LOGO
 const logo = "https://nocodeai.cloud/wp-content/uploads/2022/04/nocode-main-logo-300x41.png";
-
 const constants = {
     logo,
     AiOutlineDown,

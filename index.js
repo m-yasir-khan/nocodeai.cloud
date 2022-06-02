@@ -1,5 +1,5 @@
 const express = require('express')
-// const routes = require("./Routes/routes")
+const cors=require("cors")
 const db = require("./server/Database_connection/db")
 db.connect((e) => {
   if (e) {
@@ -8,6 +8,8 @@ db.connect((e) => {
   console.log('MY SQL DB CONNECTED !')
 })
 const app = express()
+app.use(express.json())
+app.use(cors())
 
 app.use('/', require('./server/Routes/routes'))
 
