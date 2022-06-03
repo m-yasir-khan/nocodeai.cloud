@@ -1,34 +1,69 @@
 const db = require("../Database_connection/db")
+const bcrypt = require('bcryptjs')
 
+const user_registration = async (req, res) => {
+    console.log(req.body, "body")
+    const name_user = req.body.name_user;
+    const email_user = req.body.email_user;
+    const description_user = req.body.description_user;
+    const date_created = new Date();
+    const date_modified = new Date();
+    const date_deleted = new Date();
+    const modified_by = req.body.modified_by;
+    const deleted_by = req.body.deleted_by;
+    const active_flag = "true";
+    const id_sub_department = "id_sub_department,id_sub_department";
+    const id_role = "id_role dhbsfjbsdfk";
+    const id_type = "id_type wjdndaskfjds"
+    const password = req.body.password;
 
-const add_user = async (req, res) => {
-
+    const salt = await bcrypt.genSalt(10);
+    const Hashpasword = await bcrypt.hash(password, salt);
     let data = {
-        user_name: "zeeshan",
-        user_title: "Mern_Stack_Developer",
-        user_email: "zeshan@gmail.com",
-        user_pw: "123456789"
+        name_user: name_user,
+        email_user: email_user,
+        description_user: description_user,
+        date_created: date_created,
+        date_modified: date_modified,
+        modified_by: modified_by,
+        date_deleted: date_deleted,
+        deleted_by: deleted_by,
+        active_flag: active_flag,
+        id_sub_department: id_sub_department,
+        id_role: id_role,
+        id_type: id_type,
+        password: Hashpasword
     }
-    let sql = 'INSERT INTO users SET ?'
-
-    db.query(sql, data, (error, result) => {
-        if (error) {
-            console.log(error, "error")
-            res.status(500).json({
+    let check_email = `SELECT * FROM users WHERE email_user="${email_user}"`;
+    let sql = 'INSERT INTO users SET ?';
+    db?.query(check_email, data, (error, result) => {
+        (result && result.length ?
+            res?.status(500).json({
                 success: false,
-                message: 'Error found',
+                message: 'email Already Exists...!',
                 error: error,
             })
-        }
-        console.log(result)
-        res.status(201).json({
-            success: true,
-            message: 'User Successfully Added in Database',
-            data: result
-        })
+            : db?.query(sql, data, (error, result) => {
+                if (error) {
+                    console.log(error, "error")
+                    res.status(500).json({
+                        success: false,
+                        message: 'Error found',
+                        error: error,
+                    })
+                }
+                res?.status(201).json({
+                    success: true,
+                    message: 'Registration Success...!',
+                    data: result
+                })
+            }
+            )
+        )
     })
 
 }
+
 
 const get_all_users = (req, res) => {
 
@@ -55,7 +90,7 @@ const get_all_users = (req, res) => {
 
 const delete_user = (req, res) => {
     const id = req.params.id
-    let sql = `DELETE FROM users  WHERE user_id=${id}`
+    let sql = `DELETE FROM users  WHERE id_user=${id}`
 
     db.query(sql, (error, results) => {
         if (error) {
@@ -66,7 +101,7 @@ const delete_user = (req, res) => {
                 error: error,
             })
         }
-        console.log(results)
+
         res.status(200).json({
             success: true,
             message: 'ONE DATA DELETED FROM TABLE USERS',
@@ -79,7 +114,109 @@ const delete_user = (req, res) => {
 
 const get_user = (req, res) => {
     const id = req.params.id
-    let sql = `SELECT * FROM  users  WHERE user_id=${id}`
+    let sql = `SELECT * FROM  users  WHERE id_user=${id}`
+    db.query(sql, (error, results) => {
+        if (error) {
+            console.log(error, "error")
+            res.status(500).json({
+                success: false,
+                message: 'Error found',
+                error: error,
+            })
+        }
+        if (results?.length) {
+            console.log(results)
+            res.status(200).json({
+                success: true,
+                message: 'ONE DATA FACHED FROM TABLE USERS',
+                data: results
+            })
+        }
+        else {
+            res.status(404).json({
+                success: false,
+                message: 'data not found',
+            })
+        }
+
+    })
+
+}
+
+const user_forget_password = (req, res) => {
+    let password = req.body.password;
+    let email_user = req.body.email_user;
+    let sql = `UPDATE  users SET password= '${password}' WHERE email_user=${email_user}`
+    db.query(sql, (error, results) => {
+        if (error) {
+            console.log(error, "error")
+            res.status(500).json({
+                success: false,
+                message: 'Error found',
+                error: error,
+            })
+        }
+        if (results?.length) {
+            console.log(results)
+            res.status(200).json({
+                success: true,
+                message: 'ONE DATA UPDATED FROM TABLE USERS',
+                data: results
+            })
+        }
+        else {
+            res.status(404).json({
+                success: false,
+                message: 'email not found',
+            })
+        }
+    })
+
+}
+// ******user_login******
+const user_auth = async (req, res) => {
+    let password = req.body.password;
+    let email_user = req.body.email_user;
+    console.log("body", password, email_user)
+    let sql = `SELECT * FROM  users  WHERE email_user="${email_user}"`
+    db.query(sql, async (error, results) => {
+        const data = results[0]
+        console.log(data)
+        console.log(password)
+        let checkpassword = data && data?.password && await bcrypt.compare(password, data?.password);
+        console.log(checkpassword)
+        if (error) {
+            console.log(error, "error")
+            res.status(500).json({
+                success: false,
+                message: 'server error',
+                error: error,
+            })
+        }
+        if (!data) {
+            res.status(400).json({
+                success: false,
+                message: 'email not Found '
+            })
+        }
+        else if (!checkpassword) {
+            res.status(400).json({
+                success: false,
+                message: 'Incorrect Password'
+            })
+        }
+        else {
+            res.status(200).json({
+                success: true,
+                message: 'user login Sucessfully...!',
+                data: results
+            })
+        }
+    })
+}
+// ****get_database*****
+const get_DB = (req, res) => {
+    let sql = `SHOW DATABASES`
 
     db.query(sql, (error, results) => {
         if (error) {
@@ -93,46 +230,20 @@ const get_user = (req, res) => {
         console.log(results)
         res.status(200).json({
             success: true,
-            message: 'ONE DATA FACHED FROM TABLE USERS',
-            data: results
-        })
-
-
-    })
-
-}
-
-const update_user = (req, res) => {
-    const id = req.params.id
-    let new_title = "full_stack_developer";
-    let sql = `UPDATE  users SET user_title= '${new_title}' WHERE user_id=${id}`
-
-    db.query(sql, (error, results) => {
-        if (error) {
-            console.log(error, "error")
-            res.status(500).json({
-                success: false,
-                message: 'Error found',
-                error: error,
-            })
-        }
-        console.log(results)
-        res.status(200).json({
-            success: true,
-            message: 'ONE DATA UPDATED FROM TABLE USERS',
+            message: 'DATABASES FACHED',
             data: results
         })
     })
-
 }
-
 
 module.exports = {
-    add_user,
+    user_auth,
+    user_registration,
     get_all_users,
     delete_user,
     get_user,
-    update_user
+    user_forget_password,
+    get_DB
 }
 
 
@@ -152,26 +263,3 @@ module.exports = {
 
 
 
-
-
-
-
-// ********* Create New Table*************
-// let sql = "CREATE TABLE dbConnection( _id int AUTO_INCREMENT,conn_string VARCHAR(255),pw VARCHAR(255),created_at VARCHAR(255),updated_at VARCHAR(255),is_deleted VARCHAR(255),PRIMARY KEY (_id))"
-// db.query(sql, (error, result) => {
-//     if (error) {
-//         console.log(error, "error")
-//         res.status(500).json({
-//             success: false,
-//             message: 'Server Error',
-//             error: error,
-//         })
-//     }
-//     console.log(result)
-//     res.status(201).json({
-//         success: true,
-//         message: 'table craeted sucess',
-//         data: result
-//     })
-// })
-// ****************************************
