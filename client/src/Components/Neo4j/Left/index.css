@@ -4,8 +4,12 @@ text-align:  center;
 
 }
 .left-icons{
-    color: #027ef8;
- padding-right: 10px !important;
+
+    
+color: #027ef8;
+ padding-right: 10px;
+ font-size: 20px;
+ display: inline;
  justify-content: space-between !important;
     
 }
