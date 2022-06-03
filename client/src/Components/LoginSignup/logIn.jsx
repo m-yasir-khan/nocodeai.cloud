@@ -1,82 +1,77 @@
 import React, { useState } from 'react'
 import './style.css'
 const LogIn = () => {
-    const [signupMode, setSignupMode] = useState('sign-up-mode')
-    const [loginMode, setLoginMode] = useState('');
+    const [signupMode, setSignupMode] = useState('no_class')
+    const [name_user, setName_user] = useState("");
+    const [email_user, setEmail_user] = useState("");
+    const [description_user, setDescription_user] = useState("");
+    const [password, setPassword] = useState("");
+    const go_to_login = () => {
+        setSignupMode("no_class")
+    }
+    const go_to_signup = () => {
+        setSignupMode("sign-up-mode")
+    }
 
-    const signupa = () => {
-        setLoginMode('')
-    }
-    const signupb = () => {
-        console.log("hello")
-    }
+     function fun(e) {
+        setState({password: e.target.value});
+     },
+
 
     return (
         <div>
-            <div className="container">
+            <div className={`login_container ${signupMode}`}>
+
                 <div className="forms-container">
                     <div className="signin-signup">
-                        <form action="#" className="sign-up-mode sign-in-form">
+                        <form className="sign-up-mode sign-in-form">
                             <h2 className="sign-up-mode title">Sign in</h2>
                             <div className="sign-up-mode input-field">
-                                <i className="sign-up-mode fas fa-user"></i>
-                                <input type="text" placeholder="Username" />
+                                <i ></i>
+                                <input type="text" placeholder="Email" value={email_user} onChange={(ev) => { setEmail_user(ev.target.value) }} />
                             </div>
                             <div className="sign-up-mode input-field">
-                                <i className="sign-up-mode fas fa-lock"></i>
-                                <input type="password" placeholder="Password" />
-
+                                <i ></i>
+                                <input type="password" placeholder="Password" value={password} onChange={(ev) => { setPassword(ev.target.value) }} />
                             </div>
-                            {/* <input type="submit" value="Login" className="sign-up-mode btn solid" /> */}
-                            <button className="sign-up-mode btn" onClick={signupa} >Login</button>
+                            <button className="sign-up-mode btn" onClick={() => {
+                                let data = {
+                                    email_user: email_user,
+                                    password: password
+                                }
+                                console.log(data)
+                            }} >Login</button>
                             <p className="sign-up-mode social-text">Or Sign in with social platforms</p>
-                            <div className="sign-up-mode social-media">
-                                {/* <a href="#" className="sign-up-mode social-icon">
-                                    <i className="sign-up-mode fab fa-facebook-f"></i>
-                                </a>
-                                <a href="#" className="sign-up-mode social-icon">
-                                    <i className="sign-up-mode fab fa-twitter"></i>
-                                </a>
-                                <a href="#" className="sign-up-mode social-icon">
-                                    <i className="sign-up-mode fab fa-google"></i>
-                                </a>
-                                <a href="#" className="sign-up-mode social-icon">
-                                    <i className="sign-up-mode fab fa-linkedin-in"></i>
-                                </a> */}
-                            </div>
+
                         </form>
-                        <form action="#" className="sign-up-form">
+                        <form className="sign-up-form">
                             <h2 className="title">Sign up</h2>
                             <div className="input-field">
-                                <i className="fas fa-user"></i>
-                                <input type="text" placeholder="Username" />
+                                <i ></i>
+                                <input type="text" placeholder="Username" value={name_user} onChange={(ev) => { setName_user(ev.target.value) }} />
                             </div>
                             <div className="input-field">
-                                <i className="fas fa-envelope"></i>
-                                <input type="email" placeholder="Email" />
+                                <i ></i>
+                                <input type="text" placeholder="Email" value={email_user} onChange={(ev) => { setEmail_user(ev.target.value) }} />
                             </div>
                             <div className="input-field">
-                                <i className="fas fa-lock"></i>
-                                <input type="password" placeholder="Password" />
-                                <button className="btn" onClick={signupa} >CONSOLE</button>
+                                <i ></i>
+                                <input type="text" placeholder="Discription" value={description_user} onChange={(ev) => { setDescription_user(ev.target.value) }} />
                             </div>
-
-                            <input type="submit" className="btn" value="Sign up" />
+                            <div className="input-field">
+                                <i ></i>
+                                <input type="password" placeholder="Password" value={password} onChange={(ev) => { setPassword(ev.target.value) }} />
+                            </div>
+                            <button className="sign-up-mode btn" onClick={() => {
+                                let data = {
+                                    name_user:name_user,
+                                    email_user: email_user,
+                                    password: password,
+                                    description_user:description_user
+                                }
+                                console.log(data)
+                            }} >Sign Up</button>
                             <p className="social-text">Or Sign up with social platforms</p>
-                            <div className="social-media">
-                                {/* <a href="#" className="social-icon">
-                                    <i className="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="#" className="social-icon">
-                                    <i className="fab fa-twitter"></i>
-                                </a>
-                                <a href="#" className="social-icon">
-                                    <i className="fab fa-google"></i>
-                                </a>
-                                <a href="#" className="social-icon">
-                                    <i className="fab fa-linkedin-in"></i>
-                                </a> */}
-                            </div>
                         </form>
                     </div>
                 </div>
@@ -89,8 +84,8 @@ const LogIn = () => {
                                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
                                 ex ratione. Aliquid!
                             </p>
-                            <button className={`btn transparent ${signupMode}`} onClick={signupb} id="sign-up-btn">
-                                Sign up CLICK
+                            <button className={`btn transparent `} onClick={go_to_signup} id="sign-up-btn">
+                                Signup
                             </button>
                         </div>
                         <img src="./img/log.svg" className="image" alt="" />
@@ -102,8 +97,8 @@ const LogIn = () => {
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
                                 laboriosam ad deleniti.
                             </p>
-                            <button className={`btn transparent ${loginMode}`} onClick={signupa} id="sign-in-btn">
-                                Sign in CLICK
+                            <button className={`btn transparent`} onClick={go_to_login} id="sign-in-btn">
+                                Signin
                             </button>
                         </div>
                         <img src="./img/register.svg" className="image" alt="" />

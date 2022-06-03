@@ -6,16 +6,18 @@ const user_registration = async (req, res) => {
     const name_user = req.body.name_user;
     const email_user = req.body.email_user;
     const description_user = req.body.description_user;
+    const password = req.body.password;
     const date_created = new Date();
     const date_modified = new Date();
     const date_deleted = new Date();
-    const modified_by = req.body.modified_by;
-    const deleted_by = req.body.deleted_by;
+    const modified_by = "xyz";
+    const deleted_by = "xyz";
     const active_flag = "true";
     const id_sub_department = "id_sub_department,id_sub_department";
     const id_role = "id_role dhbsfjbsdfk";
-    const id_type = "id_type wjdndaskfjds"
-    const password = req.body.password;
+    const id_type = "id_type wjdndaskfjds";
+    const id_orginization= " id _orginiation kdjbsj";
+    const id_department ="id department dfgdg";
 
     const salt = await bcrypt.genSalt(10);
     const Hashpasword = await bcrypt.hash(password, salt);
@@ -32,7 +34,9 @@ const user_registration = async (req, res) => {
         id_sub_department: id_sub_department,
         id_role: id_role,
         id_type: id_type,
-        password: Hashpasword
+        password: Hashpasword,
+        id_orginization:id_orginization,
+        id_department:id_department,
     }
     let check_email = `SELECT * FROM users WHERE email_user="${email_user}"`;
     let sql = 'INSERT INTO users SET ?';
