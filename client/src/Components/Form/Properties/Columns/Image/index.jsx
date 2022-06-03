@@ -8,7 +8,7 @@ export default function Image(props) {
         <div className='properties'>
             <span className='properties-header'>Properties</span>
             <div visibility={props?.visibility?.toString()} className='properties-components'>
-                <h3 style={{ textAlign: "center" }}>Image</h3>
+                <h3 style={{ textAlign: "center" }}>{props?.data?.id}</h3>
                 <input onChange={(e) => {
                     let image = e.target.files[0];
                     let objectURL = URL.createObjectURL(image);

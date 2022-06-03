@@ -5,7 +5,7 @@ export default function Swimlane(props) {
         <div className='properties'>
             <span className='properties-header'>Properties</span>
             <div visibility={props?.visibility?.toString()} className='properties-components'>
-                <h3 style={{ textAlign: "center" }}>Swimlane</h3>
+                <h3 style={{ textAlign: "center" }}>{props?.data?.id}</h3>
                 <span>Name:</span>
                 <input value={props?.inputFieldLabel} onChange={props?.handleName} type="text" />
                 <span>Type:</span>

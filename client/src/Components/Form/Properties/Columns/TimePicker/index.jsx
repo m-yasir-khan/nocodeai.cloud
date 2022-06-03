@@ -8,12 +8,12 @@ export default function TimePicker(props) {
                 <h3 style={{ textAlign: "center" }}>Time Picker</h3>
                 <span>Name:</span>
                 <input value={props?.inputFieldLabel} onChange={props?.handleName} type="text" />
-                <span>Type:</span>
+                {/* <span>Type:</span>
                 <select onChange={props?.handleSelectChange}>
                     {props?.nd?.inputTypes.map((it) => {
                         return <option key={it?.id} value={it?.type.toLowerCase()}>{it?.type}</option>
                     })}
-                </select>
+                </select> */}
             </div>
         </div>
     )

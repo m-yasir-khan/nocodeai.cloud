@@ -7,8 +7,12 @@ export default function Container(props) {
     const [name, setName] = useState(props?.data?.label);
     const [txtClrToggle, setTxtClrToggle] = useState(false);
     const [txtClr, setTxtClr] = useState(props?.data?.color);
+    const [borderClr, setBorderClr] = useState(props?.data?.borderColors);
+
 
     const [bgClrToggle, setBgClrToggle] = useState(false);
+    const [bgBorderColor, setBgBorderColor] = useState(false);
+
     const [bgClr, setBgClr] = useState(props?.data?.bgColor);
     return (
         <div className='properties'>
@@ -29,6 +33,10 @@ export default function Container(props) {
                     <span>Text Color:</span>
                     <div onClick={() => setTxtClrToggle(!txtClrToggle)} style={{ cursor: "pointer", height: "25px", width: "25px", border: "1px solid #a1a1a1", backgroundColor: txtClr }}></div>
                 </div>
+                <div style={{ display: "flex", alignItems: "center", marginTop: "2px", marginBottom: "2px" }}>
+                    <span>Border Color:</span>
+                    <div onClick={() => setBgBorderColor(!bgBorderColor)} style={{ cursor: "pointer", height: "25px", width: "25px", border: "1px solid #a1a1a1", backgroundColor: borderClr }}></div>
+                </div>
                 {txtClrToggle &&
                     <ChromePicker
                         disableAlpha
@@ -40,6 +48,13 @@ export default function Container(props) {
                         disableAlpha
                         color={bgClr}
                         onChange={(color) => { setBgClr(color.hex); singleDataChange(color.hex, props?.data?.id, "bgColor", props?.elements, props?.setElements) }}
+                    />}
+
+{bgBorderColor &&
+                    <ChromePicker
+                        disableAlpha
+                        color={borderClr}
+                        onChange={(color) => { setBorderClr(color.hex); singleDataChange(color.hex, props?.data?.id, "borderColors", props?.elements, props?.setElements) }}
                     />}
             </div>
 

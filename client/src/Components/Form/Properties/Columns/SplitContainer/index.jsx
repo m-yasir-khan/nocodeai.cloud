@@ -5,7 +5,7 @@ export default function SplitContainer(props) {
         <div className='properties'>
             <span className='properties-header'>Properties</span>
             <div visibility={props?.visibility?.toString()} className='properties-components'>
-                <h3 style={{ textAlign: "center" }}>Split Container</h3>
+                <h3 style={{ textAlign: "center" }}>{props?.data?.id}</h3>
                 <span>Columns:</span>
                 <select onChange={props?.handleColumns}>
                     <option value="2">2</option>

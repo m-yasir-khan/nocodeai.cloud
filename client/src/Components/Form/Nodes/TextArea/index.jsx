@@ -111,7 +111,7 @@ function TextArea(props) {
             handleComponent={handleComponent}
             resizeRatio={1}
         >
-            <textarea style={{ width: "100%" }} value={data?.textarea} />
+            <textarea style={{ width: "100%" }} value={data?.label} />
 
         </Resizable>
     )

@@ -101,7 +101,7 @@ function InputText(props) {
                 setHeight(height + d.height);
                 handleUpdateNode(e, data?.id, data?.position, w, h, props?.elements, props?.setElements)
             }}
-            style={{ textAlign: "center" }}
+            style={{ textAlign: "center",borderColor:`${data?.borderColors} !important`,}}
             defaultSize={{ width: data?.width, height: data?.height }}
             onResizeStart={handleResizeStart}
             minWidth={data?.minWidth}

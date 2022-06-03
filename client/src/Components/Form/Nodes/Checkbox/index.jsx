@@ -18,7 +18,7 @@ import {
 function CheckboxNode(props) {
     let data = props?.data;
     data.type = "checkbox";
-
+    console.log(data?.question,'quest')
     const [dimension, setDimension] = useState();
     const [multiple, setMultiple] = useState(false);
     const [fired, setFired] = useState(false);

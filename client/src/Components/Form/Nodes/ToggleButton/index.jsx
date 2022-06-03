@@ -17,12 +17,18 @@ import {
 function ToggleButtonNode(props) {
     let data = props?.data;
     data.type = "togglebutton";
+    console.log(data,'dataaaaaaaaaaa==========>')
 
     const [dimension, setDimension] = useState();
     const [multiple, setMultiple] = useState(false);
     const [fired, setFired] = useState(false);
     const [width, setWidth] = useState(data?.width);
     const [height, setHeight] = useState(data?.height);
+    const [button1, setButton1] = useState('Button 1');
+    const [button2, setButton2] = useState('Button 2');
+    const [button3, setButton3] = useState('Button 3');
+
+
 
 
     useEffect(() => {
@@ -97,6 +103,19 @@ function ToggleButtonNode(props) {
         setAlignment(newAlignment);
     };
 
+//   useEffect(()=>{
+
+//     if(data?.button =='Button 1' ){
+//         setButton1(data?.togglebutton)
+//     }else if(data?.button =='Button 2' ){
+//         setButton2(data?.togglebutton)
+//     }else if(data?.button =='Button 3' ){
+//         setButton3(data?.togglebutton)
+//     }
+
+
+//   },[data?.button])
+
     let element = (
         <Resizable
             size={{ width, height }}
@@ -124,9 +143,10 @@ function ToggleButtonNode(props) {
                 exclusive
                 onChange={handleChange}
             >
-                <ToggleButton value="web">Button 1</ToggleButton>
-                <ToggleButton value="android">Button 2</ToggleButton>
-                <ToggleButton value="ios">Button 3</ToggleButton>
+               
+                <ToggleButton style={{fontSize: data?.size, textTransform: data?.textTransform, fontWeight: data?.fontWeight,backgroundColor: data?.bgColor, color: data?.color}}  value="web">{data?.button =='Button 1' ? data?.togglebutton:'Button 1'}</ToggleButton>
+                <ToggleButton style={{fontSize: data?.size, textTransform: data?.textTransform, fontWeight: data?.fontWeight,backgroundColor: data?.bgColor, color: data?.color}}  value="android">{data?.button =='Button 2' ? data?.togglebutton:'Button 2'}</ToggleButton>
+                <ToggleButton style={{fontSize: data?.size, textTransform: data?.textTransform, fontWeight: data?.fontWeight,backgroundColor: data?.bgColor, color: data?.color}} value="ios">{data?.button =='Button 3' ? data?.togglebutton:'Button 3'}</ToggleButton>
             </ToggleButtonGroup>
         </Resizable>
     )
