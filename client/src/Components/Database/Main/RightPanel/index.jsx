@@ -13,9 +13,9 @@ const RightPanel = () => {
   const [table, setTable] = useState('');
   const [column, setColumn] = useState('');
 
-  console.log(dataset, "DATASET==>")
-  console.log(table, "TABLE==>")
-  console.log(column, "Column==>")
+  // console.log(dataset, "DATASET==>")
+  // console.log(table, "TABLE==>")
+  // console.log(column, "Column==>")
   const datasets = [
     {
       id: 1,
