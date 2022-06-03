@@ -1,7 +1,16 @@
 import {
     InputText,
     HTML,
-    Kanban
+    Kanban,
+    Mail,
+    Phone,
+    AutomatedInformationFlow,
+    ManualInformationFlow,
+    Worker,
+    ItSystem,
+    DataBlock,
+    ProcessBlock,
+    OutsideOrganization
 } from '../Nodes'
 
 const handleElements = (getType, position, getId, dataProperties, dataDelete) => {
@@ -47,12 +56,127 @@ const handleElements = (getType, position, getId, dataProperties, dataDelete) =>
         name: "Default",
 
     }
+    const mail = {
+        component: Mail,
+        type: getType,
+        selected: false,
+        position,
+        properties: dataProperties,
+        delete: dataDelete,
+        id: getId,
+        label: "Default",
+        name: "Default",
 
+    }
+    const phone = {
+        component: Phone,
+        type: getType,
+        selected: false,
+        position,
+        properties: dataProperties,
+        delete: dataDelete,
+        id: getId,
+        label: "Default",
+        name: "Default",
 
+    }
+      const automatedInformationFlow= {
+        component: AutomatedInformationFlow,
+        type: getType,
+        selected: false,
+        position,
+        properties: dataProperties,
+        delete: dataDelete,
+        id: getId,
+        label: "Default",
+        name: "Default",
+
+    }
+    const manualInformationFlow   = {
+        component: ManualInformationFlow,
+        type: getType,
+        selected: false,
+        position,
+        properties: dataProperties,
+        delete: dataDelete,
+        id: getId,
+        label: "Default",
+        name: "Default",
+
+    }
+    const worker = {
+        component: Worker,
+        type: getType,
+        selected: false,
+        position,
+        properties: dataProperties,
+        delete: dataDelete,
+        id: getId,
+        label: "Default",
+        name: "Default",
+
+    }
+    const itSystem = {
+        component:ItSystem,
+        type: getType,
+        selected: false,
+        position,
+        properties: dataProperties,
+        delete: dataDelete,
+        id: getId,
+        label: "Default",
+        name: "Default",
+
+    }
+    const dataBlock = {
+        component: DataBlock,
+        type: getType,
+        selected: false,
+        position,
+        properties: dataProperties,
+        delete: dataDelete,
+        id: getId,
+        label: "Default",
+        name: "Default",
+
+    }
+    const processBlock = {
+        component:ProcessBlock,
+        type: getType,
+        selected: false,
+        position,
+        properties: dataProperties,
+        delete: dataDelete,
+        id: getId,
+        label: "Default",
+        name: "Default",
+
+    }
+    const outsideOrganization = {
+        component: OutsideOrganization,
+        type: getType,
+        selected: false,
+        position,
+        properties: dataProperties,
+        delete: dataDelete,
+        id: getId,
+        label: "Default",
+        name: "Default",
+
+    }
     const Components = {
         inputfield: inputField,
         html,
-        kanban
+        kanban,
+        mail,
+        phone,
+        automatedInformationFlow,
+        manualInformationFlow,
+        worker,
+        itSystem,
+        dataBlock,
+        processBlock,
+        outsideOrganization
     }
 
     return Components[getType]
