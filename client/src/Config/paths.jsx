@@ -81,6 +81,12 @@ const paths = [
         name: "Neo4j",
         path: "/neo4j",
         component: screens.Neo4J
+    },
+    {
+        id: 12,
+        name: "Login",
+        path: "/login",
+        component: screens.Login
     }
 
 ]
