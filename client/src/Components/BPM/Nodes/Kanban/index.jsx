@@ -6,27 +6,35 @@ import { constants } from '../../../../Utils/constants'
 import { Rnd } from "react-rnd";
 import ResizeHandle from "../resizeHandle";
 import { flagBottom, flagTop, flagLeft, flagRight } from '../nodesFlag';
+import {
+    copyNode,
+    handleSelectNode,
+    handleUpdateNode,
+    selectMultipleNodes
+} from '../../FunctionalData';
 
 function Kanban(props) {
-    const [width, setWidth] = useState(200);
-    const [height, setHeight] = useState(200);
-    const [x1, setX1] = useState(10);
-    const [y1, setY1] = useState(10);
-
     let data = props?.data;
-    // data.type = "swimlane";
+    data.type = "kanban";
 
-    const [flag, setFlag] = useState(false);
-    const [dimension, setDimension] = useState();
+    const [multiple, setMultiple] = useState(false);
+    const [fired, setFired] = useState(false);
+    const [width, setWidth] = useState(data?.width);
+    const [height, setHeight] = useState(data?.height);
 
-    useEffect(() => {
-        // Your code here
-        props?.componentDidMount();
-    }, []);
+   
 
-    useEffect(() => {
-        // props?.componentDidUpdate();
-    });
+    const onClickSetting = (event) => {
+        data?.properties(event, data, props?.setNodeProperty, props?.setPropertyVisible);
+    }
+
+    const onClickDelete = (event) => {
+        data?.delete(event, data, props?.elements, props?.setElements);
+    }
+
+    const handleClick = (event) => {
+        multiple ? selectMultipleNodes(event, data?.id, props?.elements, props?.setElements) : handleSelectNode(event, data?.id, props?.elements, props?.setElements);
+    }
 
     const handleStyles = {
         top: data?.selected
@@ -57,21 +65,7 @@ function Kanban(props) {
         bottomRight: data?.selected ? <ResizeHandle /> : ""
     }
 
-    const onClickSetting = () => {
-        props?.properties(data);
-    }
 
-    const onClickDelete = () => {
-        props?.delete(data);
-    }
-    const updatePosition = (position) => {
-        setX1(position.x);
-        setY1(position.y);
-    }
-    const updateParentPosition = () => {
-        const position = { x: x1, y: y1 };
-        props?.updateParentPosition(position);
-    }
 
     // const handleResizeStart = (e, direction) => {
     //     if (
@@ -92,27 +86,24 @@ function Kanban(props) {
             size={{ width: width, height: height }}
             resizeHandleComponent={handleComponent}
             resizeHandleStyles={handleStyles}
+            minWidth={data?.minWidth}
+            minHeight={data?.minHeight}
+            maxHeight={data?.maxHeight}
+            maxWidth={data?.maxWidth}
             position={{ x: 10, y: 10 }}
             className="bg_kanban"
             onDragStop={(e, d) => {
                 // setX1(d.x); setY1(d.y);
             }}
             onDrag={(e, d) => {
-                setX1(d.deltaX+x1); 
-                setY1(d.deltaY+y1);
-                const position = { x: x1, y: y1 };
 
-                props?.updateParentPosition(position);
             }}
             onResizeStop={(e, direction, ref, delta, position) => {
-                console.log(position);
                 setWidth(ref.style.width);
                 setHeight(ref.style.height);
-                setX1(position.x); 
-                setY1(position.y);
             }}
         >
-            <div className="Merge" onDrag={e => { console.log("drag called") }}>
+            <div className="Merge" onDrag={e => { console.log("drag called") }} onClick={handleClick}>
                 <p>{data.label}</p>
             </div>
         </Rnd>
@@ -121,19 +112,7 @@ function Kanban(props) {
     const iconStyle = { height: "23px", width: "23px", marginTop: "4px", marginLeft: "4px", marginRight: "4px", cursor: "pointer" };
 
     return (
-        <div onClick={(event) => {
-
-            if (event.ctrlKey) {
-                props?.handleMultipleSelectNode(data?.id);
-                event.stopPropagation();
-            }
-            else {
-                props?.handleSelectNode(data?.id);
-                event.stopPropagation();
-            }
-            // console.log(`data ID ${data?.id}`)
-        }
-        }
+        <div onClick={handleClick}
             className="alert">
             <Tooltip element={element} tooltip={
                 <div style={{ display: "block" }}>
