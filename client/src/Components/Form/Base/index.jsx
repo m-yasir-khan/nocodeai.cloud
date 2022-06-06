@@ -114,6 +114,7 @@ function Base(props) {
         position: "relative",
         height: "100vh",
         width: `${baseWidth}px`,
+        zoom:'150%',
     };
 
     const handleClick = (event) => {
@@ -149,6 +150,9 @@ function Base(props) {
         setScrolling(true);
         setClientX(e.clientX);
         setClientY(e.clientY);
+        console.log(window.innerHeight,"height")
+        console.log(window.innerWidth,"width")
+        
     }
 
     const onMouseUp = (e) => {
@@ -173,12 +177,14 @@ function Base(props) {
             setRec({ width: w, height: h })
         }
         if (isScrolling == true) {
-            base.current.scrollLeft = scrollX + e.clientX - clientX;
-            base.current.scrollTop = scrollY + e.clientY - clientY;
-            console.log(base.current.scrollLeft);
-            console.log(base.current.scrollTop);
-            setScrollX(scrollX + e.clientX - clientX);
-            setScrollY(scrollY + e.clientY - clientY);
+            base.current.scrollLeft = scrollX - e.movementX;
+            base.current.scrollTop = scrollY - e.movementY;
+            console.log(e.movementX,'movementX');
+            console.log(e.movementY,'movementY');
+            console.log(base.current.scrollLeft,'scrol left');
+            console.log(base.current.scrollTop,'scrol top');
+            setScrollX(base.current.scrollLeft);
+            setScrollY(base.current.scrollTop);
             setClientX(e.clientX);
             setClientY(e.clientY);
 
