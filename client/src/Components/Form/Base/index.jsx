@@ -13,7 +13,6 @@ import {
 
 function Base(props) {
     let data = props?.elements;
-    console.log(data);
 
     const [key, setKey] = useState("");
     const [draw, setDraw] = useState(false);
@@ -22,7 +21,14 @@ function Base(props) {
     const [startPos, setStartPos] = useState({ x: 0, y: 0 });
     const [endPos, setEndPos] = useState({ x: 0, y: 0 });
     const [selectedIds, setSelectedIds] = useState([]);
+    const [isScrolling, setScrolling] = useState(false);
+    const [clientX, setClientX] = useState(0);
+    const [clientY, setClientY] = useState(0);
+    const [scrollX, setScrollX] = useState(0);
+    const [scrollY, setScrollY] = useState(0);
+    const [baseWidth, setBaseWidth] = useState(1200);
     const selectableItems = useRef([]);
+    const base = useRef();
 
     useEffect(() => {
         handleMultipleSelectDrag(selectedIds, props?.elements, props?.setElements);
@@ -85,10 +91,11 @@ function Base(props) {
         border: '1px solid #dedede',
         borderRadius: '1px',
         backgroundColor: '#f9f9f9',
-        width: '100%',
+        width: '980px',
         minHeight: "80vh",
         height: "80vh",
         outline: 'none',
+        overflow: 'hidden',
         cursor: cursor
     }
 
@@ -105,8 +112,8 @@ function Base(props) {
 
     const containerStyle = {
         position: "relative",
-        height: "100%",
-        width: "100%"
+        height: "100vh",
+        width: `${baseWidth}px`,
     };
 
     const handleClick = (event) => {
@@ -139,11 +146,13 @@ function Base(props) {
             setStartPos({ x: x, y: y });
             // console.log(x, y);
         }
+        setScrolling(true);
+        setClientX(e.clientX);
+        setClientY(e.clientY);
     }
 
     const onMouseUp = (e) => {
         if (key == "Control") {
-            setCursor("grab")
             setDraw(false);
             // console.log(e.clientX, e.clientY);
             const box = { left: startPos.x, top: startPos.y + 100, width: rec.width, height: rec.height }
@@ -151,6 +160,7 @@ function Base(props) {
             onSelectionChange(box);
         }
         componentDidMount();
+        setScrolling(false);
     }
 
     const onMouseMove = (e) => {
@@ -162,8 +172,27 @@ function Base(props) {
             let h = y - startPos.y;
             setRec({ width: w, height: h })
         }
+        if (isScrolling == true) {
+            base.current.scrollLeft = scrollX + e.clientX - clientX;
+            base.current.scrollTop = scrollY + e.clientY - clientY;
+            console.log(base.current.scrollLeft);
+            console.log(base.current.scrollTop);
+            setScrollX(scrollX + e.clientX - clientX);
+            setScrollY(scrollY + e.clientY - clientY);
+            setClientX(e.clientX);
+            setClientY(e.clientY);
+
+        }
         else {
             setDraw(false)
+            // console.log(x, y, "position");
+            // let x = e.clientX - 260;
+            // let y = e.clientY - 120; 
+            // if (x >= 750) {
+            //     console.log("moving");
+            //     // let w = baseWidth;
+            //     // setBaseWidth(w+=10)
+            // }
         }
     }
 
@@ -183,6 +212,7 @@ function Base(props) {
                 id="formBase"
                 // onClick={props?.handleDeselectNodes}
                 onClick={deselectNodes}
+                ref={base}
                 tabIndex="0">
 
 
