@@ -19,7 +19,9 @@ import {
     AiOutlinePhone,
     AiOutlineInbox,
     AiOutlineWarning,
-    AiOutlineRedo
+    AiOutlineRedo,
+    AiOutlineZoomIn,
+    AiOutlineZoomOut
 } from 'react-icons/ai';
 import axios from 'axios';
 
@@ -252,7 +254,9 @@ const constants = {
     BsStackOverflow,
     VscArrowRight,
     AiOutlineRedo,
-    BsEyeglasses
+    BsEyeglasses,
+    AiOutlineZoomIn,
+    AiOutlineZoomOut
 }
 
 export { constants }

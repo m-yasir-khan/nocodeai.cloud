@@ -1,0 +1,19 @@
+.form-base-zoom {
+    position: absolute;
+    top: 75vh;
+    border: 1px solid #dedede;
+}
+
+.form-base-zoom .form-base-zoom-container {
+    padding: 4px;
+    text-align: center;
+    cursor: pointer;
+    border-bottom: 1px solid #dedede;
+}
+
+.form-base-zoom .form-base-zoom-icons {
+    height: 22px;
+    width: 22px;
+    color: #027ef8;
+    background-color: #ffffff;
+}

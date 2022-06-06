@@ -10,6 +10,7 @@ import {
     handleUpdateNode,
     handleMultipleSelectDrag
 } from '../FunctionalData';
+import MagnifyBase from "./MagnifyBase";
 
 function Base(props) {
     let data = props?.elements;
@@ -27,6 +28,7 @@ function Base(props) {
     const [scrollX, setScrollX] = useState(0);
     const [scrollY, setScrollY] = useState(0);
     const [baseWidth, setBaseWidth] = useState(1200);
+    const [baseZoom, setBaseZoom] = useState(100);
     const selectableItems = useRef([]);
     const base = useRef();
 
@@ -44,7 +46,7 @@ function Base(props) {
         });
         // props?.handleMultipleSelectDrag(indexesToSelect);
         setSelectedIds(indexesToSelect);
-        console.log(indexesToSelect,"intersection")
+        console.log(indexesToSelect, "intersection")
     }
     const componentDidMount = () => {
 
@@ -53,14 +55,13 @@ function Base(props) {
             Array.from(document.getElementById('formBase').children[1].children).forEach((item, index) => {
                 const { left, top, width, height } = item.getBoundingClientRect();
                 // const topUpdated = top +110;
-               
+
                 selectableItems.current.push({
                     left,
                     top: top + 110,
                     width,
                     height
-                }); 
-                console.log (selectableItems.current);
+                });
             });
         }
     };
@@ -114,7 +115,7 @@ function Base(props) {
         position: "relative",
         height: "100vh",
         width: `${baseWidth}px`,
-        zoom:'100%',
+        zoom: `${baseZoom}%`,
     };
 
     const handleClick = (event) => {
@@ -150,9 +151,9 @@ function Base(props) {
         setScrolling(true);
         setClientX(e.clientX);
         setClientY(e.clientY);
-        console.log(window.innerHeight,"height")
-        console.log(window.innerWidth,"width")
-        
+        console.log(window.innerHeight, "height")
+        console.log(window.innerWidth, "width")
+
     }
 
     const onMouseUp = (e) => {
@@ -179,10 +180,6 @@ function Base(props) {
         if (isScrolling == true) {
             base.current.scrollLeft = scrollX - e.movementX;
             base.current.scrollTop = scrollY - e.movementY;
-            console.log(e.movementX,'movementX');
-            console.log(e.movementY,'movementY');
-            console.log(base.current.scrollLeft,'scrol left');
-            console.log(base.current.scrollTop,'scrol top');
             setScrollX(base.current.scrollLeft);
             setScrollY(base.current.scrollTop);
             setClientX(e.clientX);
@@ -221,7 +218,6 @@ function Base(props) {
                 ref={base}
                 tabIndex="0">
 
-
                 <div style={draw ? square : { display: "none" }}></div>
 
                 <DraggableContainer style={containerStyle} id="dragContainer">
@@ -248,6 +244,9 @@ function Base(props) {
                     })}
                 </DraggableContainer>
             </div>
+            <MagnifyBase 
+                baseZoom={baseZoom}
+                setBaseZoom={setBaseZoom} />
         </div>
     );
 }
