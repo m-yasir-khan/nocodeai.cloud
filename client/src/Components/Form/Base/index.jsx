@@ -114,7 +114,7 @@ function Base(props) {
         position: "relative",
         height: "100vh",
         width: `${baseWidth}px`,
-        zoom:'150%',
+        zoom:'100%',
     };
 
     const handleClick = (event) => {
