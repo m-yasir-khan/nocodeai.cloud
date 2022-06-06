@@ -13,15 +13,9 @@ const LogIn = () => {
         setSignupMode("sign-up-mode")
     }
 
-     function fun(e) {
-        setState({password: e.target.value});
-     },
-
-
     return (
         <div>
             <div className={`login_container ${signupMode}`}>
-
                 <div className="forms-container">
                     <div className="signin-signup">
                         <form className="sign-up-mode sign-in-form">
